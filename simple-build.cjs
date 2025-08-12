@@ -10,9 +10,21 @@ if (!fs.existsSync('dist')) fs.mkdirSync('dist', { recursive: true });
 if (!fs.existsSync('dist/public')) fs.mkdirSync('dist/public', { recursive: true });
 
 try {
-  // Try standard vite build from root
+  // Try standard vite build from root with better error handling
   console.log('⚛️ Building with Vite...');
-  execSync('npx vite build', { stdio: 'inherit' });
+  execSync('npx vite build --logLevel error', { stdio: 'inherit' });
+  
+  // Verify the build actually worked
+  if (!fs.existsSync('dist/public/index.html')) {
+    throw new Error('Build output missing');
+  }
+  
+  // Check if it's our real app, not just the fallback
+  const indexContent = fs.readFileSync('dist/public/index.html', 'utf8');
+  if (indexContent.includes('System wird initialisiert')) {
+    throw new Error('Only fallback page was built');
+  }
+  
   console.log('✅ Build completed successfully!');
   
 } catch (error) {
