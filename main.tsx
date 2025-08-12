@@ -8,6 +8,6 @@ function initializeBrowserCheck() {
   // Basic check - full implementation moved to App component
 }
 
-initializeBrowserCheck();
 
+console.log('Browser initialized');
 createRoot(document.getElementById("root")!).render(<App />);

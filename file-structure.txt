@@ -1,0 +1,31 @@
+GitHub Upload Struktur - Alle Dateien einzeln
+
+Diese Dateien einzeln zu GitHub hochladen:
+
+ROOT FILES:
+- package.json (Dependencies)
+- simple-build.cjs (Build Script) 
+- vercel.json (Vercel Config)
+- vite.config.ts
+- tailwind.config.ts
+- tsconfig.json
+- components.json
+- postcss.config.js
+
+CLIENT FILES (mit client/ Pfad):
+- Alle .tsx/.ts Dateien aus client/
+- index.css, App.tsx, main.tsx etc.
+
+SERVER FILES (mit server/ Pfad):
+- Alle .ts Dateien aus server/
+
+SHARED FILES (mit shared/ Pfad):
+- schema.ts und andere shared files
+
+WICHTIG:
+GitHub erkennt automatisch die Ordnerstruktur basierend auf Dateinamen mit Pfaden wie:
+- client/src/App.tsx
+- server/index.ts  
+- shared/schema.ts
+
+Auch wenn du nur einzelne Dateien hochlädst!
