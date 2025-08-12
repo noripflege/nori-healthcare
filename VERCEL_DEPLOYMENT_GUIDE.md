@@ -13,9 +13,16 @@ Der lokale Build funktioniert jetzt perfekt:
 Lade diese **neuen/aktualisierten** Dateien zu GitHub hoch:
 
 1. **`build.js`** (neu) - Vercel-kompatibles Build-Script
-2. **`vercel.json`** (aktualisiert) - Hauptkonfiguration 
-3. **`vercel-static.json`** (neu) - Fallback für statische Sites
+2. **`vercel.json`** (aktualisiert) - Einfache statische Konfiguration 
+3. **`vercel-simple.json`** (neu) - Minimale Fallback-Konfiguration
 4. **`VERCEL_DEPLOYMENT_GUIDE.md`** (diese Anleitung)
+
+## 🔧 Vercel Runtime Fehler behoben
+
+**Problem:** "Function Runtimes must have a valid version"
+**Lösung:** Vereinfachte vercel.json ohne Server Functions
+
+Die neue Konfiguration ist jetzt statisch-fokussiert und sollte ohne Runtime-Probleme funktionieren.
 
 ## 🔄 Vercel Deployment
 
