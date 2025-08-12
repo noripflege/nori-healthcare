@@ -2,7 +2,7 @@
 nixPkgs = ["nodejs_20"]
 
 [phases.build]
-cmds = ["node simple-build.cjs"]
+cmds = ["chmod +x railway-final.sh && ./railway-final.sh"]
 
 [start]
-cmd = "cd dist && npm install --production --no-audit && npm start"
+cmd = "cd dist && npm install && node index.js"

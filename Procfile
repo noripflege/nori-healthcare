@@ -1,1 +1,1 @@
-web: node dist/index.js
+web: ./railway-final.sh && cd dist && npm install && node index.js
