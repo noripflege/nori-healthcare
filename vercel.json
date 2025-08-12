@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "node build.js",
+  "buildCommand": "node simple-build.cjs",
   "outputDirectory": "dist/public",
   "installCommand": "npm install"
 }
