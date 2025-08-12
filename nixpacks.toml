@@ -1,14 +1,8 @@
 [phases.setup]
 nixPkgs = ["nodejs-20_x"]
 
-[phases.install]
-cmds = ["npm ci --prefer-offline --no-audit"]
-
 [phases.build]
-cmds = [
-  "node build.cjs",
-  "ls -la dist/"
-]
+cmds = ["./railway-build.sh"]
 
 [start]
 cmd = "cd dist && npm install --production --no-audit && npm start"
