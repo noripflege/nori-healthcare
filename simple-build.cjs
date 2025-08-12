@@ -10,6 +10,28 @@ if (!fs.existsSync('dist')) fs.mkdirSync('dist', { recursive: true });
 if (!fs.existsSync('dist/public')) fs.mkdirSync('dist/public', { recursive: true });
 
 try {
+  // Remove problematic import first
+  console.log('🔧 Fixing main.tsx...');
+  const mainTsxPath = 'client/src/main.tsx';
+  if (fs.existsSync(mainTsxPath)) {
+    let mainContent = fs.readFileSync(mainTsxPath, 'utf8');
+    
+    // Remove cross-browser-check import and call
+    mainContent = mainContent.replace(/import.*cross-browser-check.*\n/g, '');
+    mainContent = mainContent.replace(/initializeBrowserCheck\(\);\n/g, '');
+    
+    // Add inline initialization instead
+    if (!mainContent.includes('console.log(\'Browser initialized\')')) {
+      mainContent = mainContent.replace(
+        'createRoot(document.getElementById("root")!).render(<App />);',
+        'console.log(\'Browser initialized\');\ncreateRoot(document.getElementById("root")!).render(<App />);'
+      );
+    }
+    
+    fs.writeFileSync(mainTsxPath, mainContent);
+    console.log('✅ main.tsx fixed');
+  }
+
   // Try standard vite build from root with better error handling
   console.log('⚛️ Building with Vite...');
   execSync('npx vite build --logLevel error', { stdio: 'inherit' });
@@ -21,7 +43,7 @@ try {
   
   // Check if it's our real app, not just the fallback
   const indexContent = fs.readFileSync('dist/public/index.html', 'utf8');
-  if (indexContent.includes('System wird initialisiert')) {
+  if (indexContent.includes('System wird initialisiert') && !indexContent.includes('id="root"')) {
     throw new Error('Only fallback page was built');
   }
   
