@@ -1,1 +1,1 @@
-web: npm start
+web: cd dist && npm install --production --no-audit && npm start
